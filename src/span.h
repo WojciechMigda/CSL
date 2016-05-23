@@ -29,6 +29,7 @@
 #include "str_concat.h"
 
 #include <stddef.h>
+#include <stdlib.h>
 
 #ifdef __cplusplus
 extern "C"
@@ -50,7 +51,32 @@ SPAN(_Tp) \
 
 #define MAKE_SPAN(_Tp, ptr, sz) (SPAN(_Tp)){ptr, sz}
 
-#define NULL_SPAN(_Tp) MAKE_SPAN(_Tp, NULL, 0)
+#define NULL_SPAN(_Tp) {NULL, 0}
+#define MAKE_NULL_SPAN(_Tp) MAKE_SPAN(_Tp, NULL, 0)
+
+
+#define FOREACH_SPAN(Item, Span, Lambda) \
+do \
+{ \
+    size_t __ix = 0; \
+    for (__ix = 0; __ix < Span.sz; ++__ix) \
+    { \
+        __typeof__ (Span.ptr[__ix]) Item = Span.ptr[__ix]; \
+        Lambda; \
+    } \
+} while (0)
+
+#define IOTA_SPAN(Span, Value) \
+do \
+{ \
+    size_t __ix = 0; \
+    __typeof__ (Span.ptr[0]) __value = Value; \
+    for (__ix = 0; __ix < Span.sz; ++__ix) \
+    { \
+        Span.ptr[__ix] = __value++; \
+    } \
+} while (0)
+
 
 #ifdef __cplusplus
 }
