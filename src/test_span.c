@@ -72,5 +72,7 @@ int main()
     int initialized[] = {1, 4, 7};
     foreach_span(MAKE_SPAN(int, &initialized[0], 3));
 
+    puts("OK");
+
     return 0;
 }
