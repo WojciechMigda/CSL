@@ -24,6 +24,7 @@ include_directories(
 
 ################################################################################
 
+add_executable( test_option_type src/test_option_type.c )
 add_executable( test_span src/test_span.c )
 
 ################################################################################
