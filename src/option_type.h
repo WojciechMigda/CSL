@@ -47,7 +47,7 @@ typedef struct STR_CONCAT3(optional_, _Tp, _s) \
 #define OPTION_TYPE_IS_SOME(what) (what._maybe == True)
 
 #define OPTION_TYPE_GET(what) (what.value)
-#define OPTION_TYPE_VALUE(what) (OPTION_TYPE_IS_SOME(what) ? OPTION_TYPE_GET(what) : assert(OPTION_TYPE_IS_SOME(what)))
+#define OPTION_TYPE_VALUE(what) (OPTION_TYPE_IS_SOME(what) ? OPTION_TYPE_GET(what) : assert(OPTION_TYPE_IS_SOME(what)), 0)
 
 #define OPTION_TYPE_NONE(_Tp) {False}
 #define MAKE_OPTION_TYPE_NONE(_Tp) (OPTION_TYPE(_Tp)){False}
