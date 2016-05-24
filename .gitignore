@@ -9,5 +9,6 @@ install_manifest.txt
 .project
 .settings
 
+test_min_max_element
 test_option_type
 test_span
